@@ -123,9 +123,9 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
             </span>
           </a>
 
-          <button onClick={() => setShow(!show)} className="mr-4">
+          <div onClick={() => setShow(!show)} className="mr-4">
             {show ? <IoMdClose size={24} /> : <FaBars size={24} />}
-          </button>
+          </div>
         </div>
       </header>
       <div

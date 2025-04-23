@@ -16,9 +16,8 @@ const Footer = () => {
         <div>
           <Image src={Logo} alt="" className="size-20" />
           <p className="mt-6 text-white">
-            ما درحال تولید و توسعه نهال های گرمسیری هستیم . تا بتوان نیاز کشور
-            را در ایت زمینه تامین کرده و از ورود این محصولات به صورت قاچاق به
-            کشور جلوگیری کینم
+            ما در این مجموعه با بیش از 9 سال سابقه خدمت به مردم عزیز توانسته ایم
+            امروزه با یک کیفیت عالی و تازه در لحظات شاد شما سهیم باشیم
           </p>
           <div className="mt-6 flex justify-center gap-8 items-center text-white *:hover:text-red-800 ">
             <a href="">

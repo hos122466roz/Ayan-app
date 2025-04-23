@@ -18,7 +18,6 @@ const Menu: React.FC<MenuProps> = ({ itemMenu }) => {
       </h1>
     );
   }
-  console.log(itemMenu);
   const dataItem = itemMenu?.filter((e) => e.Categorys == category);
 
   return (

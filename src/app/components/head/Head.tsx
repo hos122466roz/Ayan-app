@@ -1,6 +1,6 @@
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 interface HeadProps{
-    cover:string ;
+    cover:string |StaticImageData;
     title:string
 }
 const Head:React.FC<HeadProps>=({cover,title})=>{
