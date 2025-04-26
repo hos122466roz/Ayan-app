@@ -4,13 +4,16 @@ import Hero from "./components/hero/Hero";
 import Menu from "./components/menu/Menu";
 import Service from "./components/service/Service";
 import ContactUsClient from "./conectUs/ConectUsClient";
+import getMenu from "./actions/getMenu";
 
-export default function Home() {
+export default async function Home() {
+        const getMenus = await getMenu();
+  
   return (
     <Suspense fallback={<>Loading...</>}>
       <div className="">
         <Hero />
-        <Menu />
+        <Menu itemMenu={getMenus} />
         <AbouteClient />
         <Service />
         <ContactUsClient />

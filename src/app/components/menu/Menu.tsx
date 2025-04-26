@@ -1,10 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GiKnifeFork } from "react-icons/gi";
 import { LuDessert } from "react-icons/lu";
 import { RiDrinks2Line } from "react-icons/ri";
 import { SafeMenu } from "@/app/types";
-
 
 interface MenuProps {
   itemMenu?: SafeMenu[];
@@ -18,8 +17,10 @@ const Menu: React.FC<MenuProps> = ({ itemMenu }) => {
       </h1>
     );
   }
-  const dataItem = itemMenu?.filter((e) => e.Categorys == category);
+    console.log('item : '+itemMenu);
 
+  const dataItem = itemMenu?.filter((e) => e.Categorys == category);
+  useEffect(() => {}, [itemMenu]);
   return (
     <section className=" container mx-auto  my-24 ">
       <div className="text-center">
