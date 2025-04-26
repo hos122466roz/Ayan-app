@@ -10,6 +10,8 @@ interface MenuProps {
 }
 const Menu: React.FC<MenuProps> = ({ itemMenu }) => {
   const [category, setCategory] = useState("food");
+  useEffect(() => {
+  }, [itemMenu]);
   if (itemMenu?.length == 0) {
     return (
       <h1 className="container my-24 text-center text-2xl text-gray-500">
@@ -17,10 +19,7 @@ const Menu: React.FC<MenuProps> = ({ itemMenu }) => {
       </h1>
     );
   }
-    console.log('item : '+itemMenu);
-
-  const dataItem = itemMenu?.filter((e) => e.Categorys == category);
-  useEffect(() => {}, [itemMenu]);
+    const dataItem = itemMenu?.filter((e) => e.Categorys == category);
   return (
     <section className=" container mx-auto  my-24 ">
       <div className="text-center">
