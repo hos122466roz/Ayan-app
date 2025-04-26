@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
       "utfs.io",
     ],
   },
+  pageExtensions: ["page.tsx", "page.ts"],
   missingSuspenseWithCSRBailout: false,
 };
 
