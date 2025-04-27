@@ -24,13 +24,13 @@ export const metadata: Metadata = {
     icon: "./image/logo/IMG_20250224_014354_555-removebg-preview.ico", // /public path
   },
 };
+export const dynamic = "force-dynamic";
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const cuurentUser=await getCurrentUser()
   return (
     <html lang="fa" dir="rtl">
