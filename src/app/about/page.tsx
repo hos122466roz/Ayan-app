@@ -4,10 +4,10 @@ import AbouteClient from './AbouteClient';
 const About=()=>{
   
     return (
-      <>
+      <div>
     <Head cover={img1} title='درباره ما'/>
     <AbouteClient/>
-      </>
+      </div>
     );
 }
 export default About
