@@ -26,14 +26,20 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
   const pathName = usePathname();
   const loginModal = useLoginModal();
   const useAddMenu = useAddMenuMenu();
-
+const activeHandler=(value:string)=>{
+  router.push(value)
+  setShow(!show)
+}
   return (
     <>
       <header
         className=" md:flex hidden  z-40  fixed py-3 right-9 left-9  items-center 
       justify-between mt-8 px-8 bg-black/50 backdrop-blur-[6px] rounded-2xl"
       >
-        <div className="flex justify-center items-center">
+        <div
+          className="flex justify-center items-center"
+          onClick={() => router.push("/")}
+        >
           <Image src={img} alt="logo" className="size-20  object-cover" />
           <nav>
             <ul className="flex justify-center items-center text-white gap-x-8 mr-15 *:font-Dana *:hover:text-red-800 *:cursor-pointer *:transition-all">
@@ -109,7 +115,10 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
       </header>
       {/* menu mobaile */}
       <header className="md:hidden flex w-full z-40 fixed py-3 right-0   items-center justify-between mt-0 px-8 bg-black/50 backdrop-blur-[6px] ">
-        <div className="flex justify-center items-center">
+        <div
+          className="flex justify-center items-center"
+          onClick={() => router.push("/")}
+        >
           <Image src={img} alt="logo" className="size-15  object-cover" />
         </div>
         <div className="flex justify-between items-center text-white text-md  font-Dana    ">
@@ -137,28 +146,28 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
           <ul className="flex *:gap-x-2 justify-center gap-y-5 items-start flex-col text-white  mr-10 *:font-Dana *:hover:text-red-800 *:cursor-pointer *:transition-all *:flex *:justify-center *:items-center">
             <li
               className={`${pathName == "/" ? "text-red-800" : ""}`}
-              onClick={() => router.push("/")}
+              onClick={() => activeHandler("/")}
             >
               <IoHomeOutline />
               <span>صفحه اصلی</span>
             </li>
             <li
               className={`${pathName == "/menu" ? "text-red-800" : ""}`}
-              onClick={() => router.push("/menu")}
+              onClick={() => activeHandler("/menu")}
             >
               <MdOutlineRestaurantMenu />
               <span> منو</span>
             </li>
             <li
               className={`${pathName == "/about" ? "text-red-800" : ""}`}
-              onClick={() => router.push("/about")}
+              onClick={() => activeHandler("/about")}
             >
               <GrContactInfo />
               <span> درباره ما </span>
             </li>
             <li
               className={`${pathName == "/conectUs" ? "text-red-800" : ""}`}
-              onClick={() => router.push("/conectUs")}
+              onClick={() => activeHandler("/conectUs")}
             >
               <IoCallOutline />
               <span> تماس با ما </span>
@@ -170,6 +179,34 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
                 <span> اضافه کردن محصول </span>
               </li>
             ) : null}
+            {currentUser ? (
+              <div className="hover:border-hidden hover:[&_span]:text-red-800 transition-all relative flex cursor-pointer group  px-4 py-1 items-center justify-center gap-x-4">
+                <span> پروفایل</span>
+                <span>
+                  <FaList />
+                </span>
+                <ul
+                  className="top-8 rounded-2xl  right-0 *:text-nowrap transition-all invisible 
+                group-hover:visible  group-hover:translate-x-0 -translate-x-8          
+                   border-t-4 border-t-red-800   absolute space-y-6
+                    bg-zinc-800 backdrop-blur-[6px] 
+                text-right px-4 py-4 *:hover:text-red-800 *:transition-all *:text-[14px] font-Dana"
+                >
+                  <li onClick={() => useAddMenu.onOpen()}>اضافه کردن محصول</li>
+                  <li onClick={() => signOut()}> خروج</li>
+                </ul>
+              </div>
+            ) : (
+              <button
+                onClick={() => loginModal.onOpen()}
+                className="flex cursor-pointer flex-row-reverse px-4 py-1 items-center justify-center gap-x-4"
+              >
+                <span>ورود</span>
+                <span>
+                  <IoIosLogIn />
+                </span>
+              </button>
+            )}
           </ul>
         </nav>
       </div>
