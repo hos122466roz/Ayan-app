@@ -8,6 +8,7 @@ import getMenu from "./actions/getMenu";
 
 export default async function Home() {
         const getMenus = await getMenu();
+        console.log(getMenus)
   
   return (
     <Suspense fallback={<>Loading...</>}>

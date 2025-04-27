@@ -10,6 +10,7 @@ interface MenuProps {
 }
 const Menu: React.FC<MenuProps> = ({ itemMenu }) => {
   const [category, setCategory] = useState("food");
+  console.log(category)
   useEffect(() => {
   }, [itemMenu]);
   if (itemMenu?.length == 0) {

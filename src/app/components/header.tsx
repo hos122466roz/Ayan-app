@@ -26,6 +26,7 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
   const pathName = usePathname();
   const loginModal = useLoginModal();
   const useAddMenu = useAddMenuMenu();
+  console.log(show)
 const activeHandler=(value:string)=>{
   router.push(value)
   setShow(!show)
@@ -181,10 +182,10 @@ const activeHandler=(value:string)=>{
             ) : null}
             {currentUser ? (
               <div className="hover:border-hidden hover:[&_span]:text-red-800 transition-all relative flex cursor-pointer group  px-4 py-1 items-center justify-center gap-x-4">
-                <span> پروفایل</span>
                 <span>
                   <FaList />
                 </span>
+                <span> پروفایل</span>
                 <ul
                   className="top-8 rounded-2xl  right-0 *:text-nowrap transition-all invisible 
                 group-hover:visible  group-hover:translate-x-0 -translate-x-8          

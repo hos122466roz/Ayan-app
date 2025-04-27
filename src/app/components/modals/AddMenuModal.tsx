@@ -12,6 +12,7 @@ import { RiDrinks2Line } from "react-icons/ri";
 import useAddMenuMenu from "@/app/hooks/useAddMenuModal";
 import axios from "axios";
 import Button from "../common/button/Buttton";
+import { useRouter } from "next/navigation";
 
 const categorys = [
   { id: 1, icon: <GiKnifeFork size={22} />, title: "غذا", category: "food" },
@@ -19,13 +20,13 @@ const categorys = [
     id: 2,
     icon: <LuDessert size={22} />,
     title: "دسر",
-    category: "dessert ",
+    category: "dessert",
   },
   {
     id: 3,
     icon: <RiDrinks2Line size={22} />,
     title: "نوشیدنی",
-    category: "drink ",
+    category: "drink",
   },
 ];
 enum STEPS {
@@ -38,6 +39,7 @@ const AddMenuModal = () => {
 
   const useAddMenu = useAddMenuMenu();
   const [isLoading, setIsLoading] = useState(false);
+  const route=useRouter()
 
   const {
     register,
@@ -91,14 +93,16 @@ const AddMenuModal = () => {
       toast.success('محصول شما با موفقیت ثبت گردید!')
     }).catch((err:any)=>{
       throw new Error(err)
+    }).finally(()=>{
+      route.refresh()
     })
   };
 
   let bodyContent = (
     <div>
-      <h4 className="font-Dana py-4 text-zinc-700 ">اطلاعات محصول</h4>
+      <h4 className="font-Dana py-4  text-zinc-700 ">اطلاعات محصول</h4>
 
-      <form action="" className="py-5 px-8 space-y-6">
+      <form action="" className="py-5 md:px-8 space-y-6">
         <Input
           id="title"
           label="نام محصول"
@@ -136,7 +140,7 @@ const AddMenuModal = () => {
   if (step === STEPS.IMAGS) {
     bodyContent = (
       <>
-        <h4 className="font-Dana py-4 text-zinc-700">کاور محصول</h4>
+        <h4 className="font-Dana py-4  text-zinc-700">کاور محصول</h4>
         <div>
           {imageSrc ? (
             <img
@@ -146,24 +150,37 @@ const AddMenuModal = () => {
             />
           ) : null}
         </div>
-        <UploadButton
-          className="mt-4 block ut-button:py-3 ut-button:px-1 ut-button:text-nowrap ut-button:bg-blue-600 ut-button:ut-readying:bg-white/50"
-          endpoint="imageUploader"
-          onClientUploadComplete={(res) => {
-            setCustomValue("imageSrc", res[0]?.appUrl);
-          }}
-          onUploadError={(error: Error) => {
-            // Do something with the error.
-            alert(`ERROR! ${error.message}`);
-          }}
-        />
+        <div className="">
+          <UploadButton
+            className="mt-4 mx-5  block ut-button:py-3  ut-button:px-1 ut-button:text-nowrap ut-button:bg-blue-600 ut-button:ut-readying:bg-white/50"
+            endpoint="imageUploader"
+            onClientUploadComplete={(res) => {
+              setCustomValue("imageSrc", res[0]?.appUrl);
+            }}
+            onUploadError={(error: Error) => {
+              // Do something with the error.
+              alert(`ERROR! ${error.message}`);
+            }}
+            content={{
+              button({ ready }) {
+                if (ready) return <div>انتخاب کاور </div>;
+                return "Getting ready...";
+              },
+              allowedContent({ ready, fileTypes, isUploading }) {
+                if (!ready) return "Checking what you allow";
+                if (isUploading) return "Seems like stuff is uploading";
+                return `Stuff you can upload: ${fileTypes.join(", ")}`;
+              },
+            }}
+          />
+        </div>
       </>
     );
   }
   if (step === STEPS.CATEGOTY) {
     bodyContent = (
       <>
-        <h4 className="font-Dana py-4 text-zinc-700">دسته بندی </h4>
+        <h4 className="font-Dana py-4  text-zinc-700">دسته بندی </h4>
         <div className=" flex gap-6 mb-6">
           {categorys.map((item) => (
             <div
@@ -187,9 +204,9 @@ const AddMenuModal = () => {
     <section
       className={`
                ${useAddMenu.isOpen ? "flex" : "hidden"}        
-              items-center justify-center  h-[100vh] w-full fixed top-0 z-50 right-0 bg-black/70 `}
+              items-center justify-center   h-[100vh] w-full fixed top-0 z-50 right-0 bg-black/70 `}
     >
-      <div className=" content rounded-xl bg-white relative z-30 p-8 w-full max-w-[510px] transition ">
+      <div className=" content rounded-xl mx-4 md:mx-0 bg-white relative z-30 p-8 w-full max-w-[510px] transition ">
         {/*  Button close Modal  */}
         <div
           onClick={() => useAddMenu.onClose()}
@@ -200,8 +217,8 @@ const AddMenuModal = () => {
           <IoCloseOutline className="" size={20} />
         </div>
         <div>
-          <div className={`   h-[100%] w-full translate-x-0 top-0   `}>
-            <h1 className="text-center text-2xl py-4 font-Dana">ثبت محصول</h1>
+          <div className={`   h-[100%] w-full translate-x-0 top-0    `}>
+            <h1 className="text-center text-2xl py-4  font-Dana">ثبت محصول</h1>
 
             {bodyContent}
 
