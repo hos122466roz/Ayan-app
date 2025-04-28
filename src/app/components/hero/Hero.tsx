@@ -11,7 +11,7 @@ const Hero=()=>{
             className=" font-MorabbaBold md:leading-23 leading-15 text-2xl
            md:text-6xl"
           >
-            حس های چشایی خود را
+            حس  چشایی خود را
             <br className="" /> با
             <strong className=" text-red-800 mr-3">اعیان</strong> ، تقویت کنید
           </h2>

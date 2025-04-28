@@ -26,7 +26,6 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
   const pathName = usePathname();
   const loginModal = useLoginModal();
   const useAddMenu = useAddMenuMenu();
-  console.log(show)
 const activeHandler=(value:string)=>{
   router.push(value)
   setShow(!show)

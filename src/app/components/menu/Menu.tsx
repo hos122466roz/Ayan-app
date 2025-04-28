@@ -10,7 +10,6 @@ interface MenuProps {
 }
 const Menu: React.FC<MenuProps> = ({ itemMenu }) => {
   const [category, setCategory] = useState("food");
-  console.log(category)
   useEffect(() => {
   }, [itemMenu]);
   if (itemMenu?.length == 0) {
@@ -22,12 +21,13 @@ const Menu: React.FC<MenuProps> = ({ itemMenu }) => {
   }
     const dataItem = itemMenu?.filter((e) => e.Categorys == category);
   return (
-    <section className=" container mx-auto  my-24 ">
+    <section className=" container mx-auto  my-24 relative ">
       <div className="text-center">
         <h2 className="text-4xl font-DanaDemiBold">منو</h2>
         <p className="font-Dana text-gray-600 mt-4">محصولات ما</p>
       </div>
-      <div className="my-12 gap-x-2 md:gap-x-8 flex justify-center w-full items-center *:md:px-10 *:px-5 *:py-5  *:flex *:items-center *:justify-center *:cursor-pointer *:flex-col *:gap-y-4 md:text-2xl font-Dana ">
+      <div className="my-12 gap-x-2 md:gap-x-8 flex justify-center w-full items-center *:md:px-10 *:px-5 *:py-5  
+      *:flex *:items-center *:justify-center bg-white *:cursor-pointer *:flex-col *:gap-y-4 md:text-2xl sticky top-32 font-Dana ">
         <div
           onClick={() => setCategory("food")}
           className={`group hover:bg-black/20 ${
