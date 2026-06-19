@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="py-12 container  bg-black/80 backdrop-blur-[6px] ">
+    <footer className="py-12 container  bg-black/20 backdrop-blur-[6px]  mb-8 rounded-[15px] ">
       <div
         className="font-Dana grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-x-12 [&_h2]:text-2xl [&_h2]:font-bold
      [&_h2]:mb-6"
@@ -19,7 +19,7 @@ const Footer = () => {
             ما در این مجموعه با بیش از 9 سال سابقه خدمت به مردم عزیز توانسته ایم
             امروزه با یک کیفیت عالی و تازه در لحظات شاد شما سهیم باشیم
           </p>
-          <div className="mt-6 flex justify-center gap-8 items-center text-white *:hover:text-red-800 ">
+          <div className="mt-6 flex justify-center gap-8 items-center text-white *:hover:text-primary ">
             <a href="">
               <FaInstagram size={24} />
             </a>
@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
         <div>
           <h2 className="text-white">لینک های مهم</h2>
-          <ul className="space-y-4 *:text-zinc-300 *:hover:text-black">
+          <ul className="space-y-4 *:text-white *:hover:text-black">
             <li>
               <a href="">منو</a>
             </li>
@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
         <div>
           <h2 className="text-white">تماس بگیرید</h2>
-          <div className="space-y-4 *:flex *:items-center *:gap-5 *:text-zinc-300">
+          <div className="space-y-4 *:flex *:items-center *:gap-5 *:text-white">
             <div>
               <span>
                 <FaLocationDot />
@@ -79,7 +79,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className=" w-full text-center mt-12 text-zinc-300 ">
+      <div className=" w-full text-center mt-12 text-white ">
         <h1 className=" flex items-center justify-center">
           کلیه حقوق این سایت محفوظ است - ساخته شده توسط
           <span className="black mx-3 text-red-600 animate-ping">

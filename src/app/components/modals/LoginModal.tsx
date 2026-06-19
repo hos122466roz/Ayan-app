@@ -41,7 +41,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ active, handleActive }) => {
       if (callback?.error) {
         toast.error(callback.error);
       }
-    });
+    }).finally(()=>{
+      setIsLoading(false)
+    })
   };
   return (
     <>
@@ -51,7 +53,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ active, handleActive }) => {
         } login-form absolute  h-[100%] w-full  top-0   `}
       >
         <h1 className="text-center text-2xl py-4 font-bold">ورود</h1>
-        <form action="" className="py-5 px-8 space-y-6">
+        <form action="" className="md:py-5 py-2 px-3 md:px-8 space-y-6">
           <Input
             id="email"
             label="ایمیل"
@@ -96,7 +98,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ active, handleActive }) => {
             {isLoading ? "Loading..." : "ورود"}
           </button>
         </form>
-        <div className="px-8 pb-5">
+        <div className=" px-3 md:px-8 pb-5">
           <button
             onClick={() => handleActive("rigster")}
             className=" peer
@@ -122,7 +124,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ active, handleActive }) => {
         onClick={() => loginModal.onClose()}
         className={`${
           loginModal.isOpen ? "flex" : " hidden"
-        } z-20  h-[100vh] w-full fixed top-0 right-0 bg-red-800/70`}
+        } z-20  h-[100vh] w-full fixed top-0 right-0 bgtext-primary/70`}
       ></div> */}
     </>
   );

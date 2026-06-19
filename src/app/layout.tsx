@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/common/footer/Footer";
@@ -7,15 +7,17 @@ import AccountModal from "./components/modals/AccountModal";
 import ToasterProvider from "./providers/ToasterProvider";
 import getCurrentUser from "./actions/getCurrentUser";
 import AddMenuModal from "./components/modals/AddMenuModal";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import EditMenuModal from "./components/modals/EditMenuModal";
+import DeleteMenuModal from "./components/modals/DeleteMenuModal";
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "Ayan  ",
@@ -35,12 +37,14 @@ export default async function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={` antialiased`}
       >
         <Header currentUser={cuurentUser} />
         <AccountModal />
         <ToasterProvider />
         <AddMenuModal/>
+        <EditMenuModal/>
+        <DeleteMenuModal/>
         {children}
         <Footer />
       </body>

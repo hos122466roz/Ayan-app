@@ -5,8 +5,8 @@ const ContactUsClient = () => {
   return (
     <section className="container my-24  ">
       <div className="text-center">
-        <h2 className="text-4xl font-DanaDemiBold">تماس با ما</h2>
-        <p className="font-Dana text-gray-600 mt-4"> آدرس و اطلاعات تماس ما</p>
+        <h2 className="text-4xl text-white font-DanaDemiBold">تماس با ما</h2>
+        <p className="font-Dana text-gray-300 mt-4"> آدرس و اطلاعات تماس ما</p>
       </div>
       <div className=" my-12 flex md:flex-row flex-col-reverse ">
         <div className="md:w-1/2 ">
@@ -19,14 +19,14 @@ const ContactUsClient = () => {
           ></iframe>
         </div>
         <div className=" md:mt-6 font-Dana mr-8 [&_p]:">
-          <h1 className="text-xl md:text-4xl font-DanaMedium text-zinc-800">
+          <h1 className="text-xl md:text-4xl font-DanaMedium text-white">
             منتظر تماس شما در ساعات تعیین شده هستیم
           </h1>
           <div className=" [&_h2]:text-xl mt-8 *:flex *:items-center space-y-8  *:border-b-2 *:pb-4 *:border-b-zinc-500/20 *:border-dashed">
             <div>
-              <IoCallOutline size={50} className="text-red-800  " />
-              <div className="mr-6 [&_p]:pt-2 [&_p]:text-zinc-700">
-                <h2>شماره های تماس</h2>
+              <IoCallOutline size={50} className="text-primary  " />
+              <div className="mr-6 [&_p]:pt-2 [&_p]:text-zinc-100">
+                <h2 className="text-white">شماره های تماس</h2>
                 <p className="*:inline-block">
                   <a href="tel: 03132620291"> تلفن 1 : 03132620291</a>
                   <a href="tel:03132620292" className="md:pr-8">
@@ -37,16 +37,16 @@ const ContactUsClient = () => {
               </div>
             </div>
             <div>
-              <FaBusinessTime size={50} className="text-red-800" />
-              <div className="mr-6 [&_p]:pt-2 [&_p]:text-zinc-700">
-                <h2> ساعت کاری </h2>
+              <FaBusinessTime size={50} className="text-primary" />
+              <div className="mr-6 [&_p]:pt-2 [&_p]:text-zinc-100">
+                <h2 className="text-white"> ساعت کاری </h2>
                 <p>هفت روز هفته - از ساعت 12:00 تا 16:00 و 18:30 تا 23:30</p>
               </div>
             </div>
             <div>
-              <RiMapPinLine size={50} className="text-red-800" />
-              <div className="mr-6 [&_p]:pt-2 [&_p]:text-zinc-700">
-                <h2> آدرس ما </h2>
+              <RiMapPinLine size={50} className="text-primary" />
+              <div className="mr-6 [&_p]:pt-2 [&_p]:text-zinc-100">
+                <h2 className="text-white"> آدرس ما </h2>
                 <p>اصفهان - پل غدیر - خیابان علامه امینی شرقی - نبش بن بست 9</p>
               </div>
             </div>
