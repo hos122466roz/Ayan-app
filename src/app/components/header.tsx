@@ -6,7 +6,7 @@ import { FaBars } from "react-icons/fa6";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { GrContactInfo } from "react-icons/gr";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { usePathname, useRouter } from "next/navigation";
 import { IoIosLogIn } from "react-icons/io";
@@ -16,6 +16,8 @@ import { FaList } from "react-icons/fa6";
 import { IoMdAdd } from "react-icons/io";
 import { signOut } from "next-auth/react";
 import useAddMenuMenu from "../hooks/useAddMenuModal";
+import Li from "./Li/Li";
+import { exportMenu } from "../utils/exportMenu";
 
 interface HeaderProps {
   currentUser: SafeUser | null;
@@ -26,50 +28,70 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
   const pathName = usePathname();
   const loginModal = useLoginModal();
   const useAddMenu = useAddMenuMenu();
-const activeHandler=(value:string)=>{
-  router.push(value)
-  setShow(!show)
-}
+  const [showHeader, setShowHeader] = useState(true);
+  const activeHandler = (value: string) => {
+    router.push(value);
+    setShow(!show);
+  };
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < 50) {
+        setShowHeader(true);
+      } else if (currentScrollY > lastScrollY) {
+        // scrolling down
+        setShowHeader(false);
+      } else {
+        // scrolling up
+        setShowHeader(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <>
       <header
-        className=" md:flex hidden  z-40  fixed py-3 right-9 left-9  items-center 
-      justify-between mt-8 px-8 bg-black/50 backdrop-blur-[6px] rounded-2xl"
+        className={`     ${showHeader ? "translate-y-0" : "-translate-y-40"}
+ md:flex hidden  z-40 transition-all  fixed py-3 right-9 left-9  items-center 
+      justify-between mt-8 px-8 bg-black/50 backdrop-blur-[6px] rounded-2xl`}
       >
-        <div
-          className="flex justify-center items-center"
-          onClick={() => router.push("/")}
-        >
+        <div className="flex justify-center items-center">
           <Image src={img} alt="logo" className="size-20  object-cover" />
           <nav>
-            <ul className="flex justify-center items-center text-white gap-x-8 mr-15 *:font-Dana *:hover:text-red-800 *:cursor-pointer *:transition-all">
-              <li
-                className={`${pathName == "/" ? "text-red-800" : ""}`}
-                onClick={() => router.push("/")}
-              >
-                صفحه اصلی
-              </li>
-              <li
-                className={`${pathName == "/menu" ? "text-red-800" : ""}`}
-                onClick={() => router.push("/menu")}
-              >
-                {" "}
-                منو{" "}
-              </li>
-              <li
-                className={`${pathName == "/about" ? "text-red-800" : ""}`}
-                onClick={() => router.push("/about")}
-              >
-                {" "}
-                درباره ما{" "}
-              </li>
-              <li
-                className={`${pathName == "/conectUs" ? "text-red-800" : ""}`}
-                onClick={() => router.push("/conectUs")}
-              >
-                {" "}
-                تماس با ما{" "}
-              </li>
+            <ul
+              className="flex justify-center items-center
+             text-white gap-x-8 mr-15 *:font-Dana *:hover:text-primary *:cursor-pointer *:transition-all"
+            >
+              <Li
+                title="صفحه اصلی"
+                clicked={() => router.push("/")}
+                active={pathName == "/"}
+              />
+              <Li
+                title=" منو"
+                clicked={() => router.push("/menu")}
+                active={pathName == "/menu"}
+              />
+              <Li
+                title="  درباره ما"
+                clicked={() => router.push("/about")}
+                active={pathName == "/about"}
+              />
+              <Li
+                title="  تماس با ما"
+                clicked={() => router.push("/conectUs")}
+                active={pathName == "/conectUs"}
+              />
             </ul>
           </nav>
         </div>
@@ -84,19 +106,20 @@ const activeHandler=(value:string)=>{
             </span>
           </a>
           {currentUser ? (
-            <div className="hover:border-hidden hover:[&_span]:text-red-800 transition-all relative flex cursor-pointer group  px-4 py-1 items-center justify-center gap-x-4">
+            <div className="hover:border-hidden hover:[&_span]:text-primary transition-all relative flex cursor-pointer group  px-4 py-1 items-center justify-center gap-x-4">
               <span> پروفایل</span>
               <span>
                 <FaList />
               </span>
               <ul
                 className="top-8 rounded-2xl  right-0 *:text-nowrap transition-all invisible 
-                group-hover:visible  group-hover:translate-x-0 -translate-x-8          
-                   border-t-4 border-t-red-800   absolute space-y-6
+                group-hover:visible min-w-40  group-hover:translate-x-0 -translate-x-8          
+                   border-t-4 border-t-primary   absolute space-y-6
                     bg-zinc-800 backdrop-blur-[6px] 
-                text-right px-4 py-4 *:hover:text-red-800 *:transition-all *:text-[14px] font-Dana"
+                text-right px-4 py-4 *:hover:text-primary *:transition-all *:text-[14px] font-Dana"
               >
-                <li onClick={() => useAddMenu.onOpen()}>اضافه کردن محصول</li>
+                <li onClick={() => router.push("/management")}> مدیریت</li>
+                <li onClick={exportMenu}> دانلود منو</li>
                 <li onClick={() => signOut()}> خروج</li>
               </ul>
             </div>
@@ -114,7 +137,16 @@ const activeHandler=(value:string)=>{
         </div>
       </header>
       {/* menu mobaile */}
-      <header className="md:hidden flex w-full z-40 fixed py-3 right-0   items-center justify-between mt-0 px-8 bg-black/50 backdrop-blur-[6px] ">
+      <header
+        className={`md:hidden flex
+       w-full z-40 fixed py-3 right-0   
+       items-center justify-between mt-0 
+       transition-all
+       h-22
+z-50
+       px-8 bg-black/50 
+       backdrop-blur-[6px] `}
+      >
         <div
           className="flex justify-center items-center"
           onClick={() => router.push("/")}
@@ -143,44 +175,47 @@ const activeHandler=(value:string)=>{
         } w-1/2 h-full fixed top-0 right-0 transition-all z-40 bg-zinc-800 `}
       >
         <nav className="mt-24">
-          <ul className="flex *:gap-x-2 justify-center gap-y-5 items-start flex-col text-white  mr-10 *:font-Dana *:hover:text-red-800 *:cursor-pointer *:transition-all *:flex *:justify-center *:items-center">
+          <ul
+            className="flex *:gap-x-2 justify-center gap-y-5 items-start flex-col text-white 
+           mr-10 *:font-Dana *:hover:text-primary *:cursor-pointer *:transition-all *:flex *:justify-center *:items-center"
+          >
             <li
-              className={`${pathName == "/" ? "text-red-800" : ""}`}
+              className={`${pathName == "/" ? "text-primary" : ""}`}
               onClick={() => activeHandler("/")}
             >
               <IoHomeOutline />
               <span>صفحه اصلی</span>
             </li>
             <li
-              className={`${pathName == "/menu" ? "text-red-800" : ""}`}
+              className={`${pathName == "/menu" ? "text-primary" : ""}`}
               onClick={() => activeHandler("/menu")}
             >
               <MdOutlineRestaurantMenu />
               <span> منو</span>
             </li>
             <li
-              className={`${pathName == "/about" ? "text-red-800" : ""}`}
+              className={`${pathName == "/about" ? "text-primary" : ""}`}
               onClick={() => activeHandler("/about")}
             >
               <GrContactInfo />
               <span> درباره ما </span>
             </li>
             <li
-              className={`${pathName == "/conectUs" ? "text-red-800" : ""}`}
+              className={`${pathName == "/conectUs" ? "text-primary" : ""}`}
               onClick={() => activeHandler("/conectUs")}
             >
               <IoCallOutline />
               <span> تماس با ما </span>
             </li>
-            {currentUser ? (
-              <li onClick={() => useAddMenu.onOpen()}>
+            {currentUser?.role === "Admin" ? (
+              <li onClick={() => router.push("/management")}>
                 {" "}
                 <IoMdAdd />
-                <span> اضافه کردن محصول </span>
+                <span> مدیریت </span>
               </li>
             ) : null}
             {currentUser ? (
-              <div className="hover:border-hidden hover:[&_span]:text-red-800 transition-all relative flex cursor-pointer group  px-4 py-1 items-center justify-center gap-x-4">
+              <div className="hover:border-hidden hover:[&_span]:text-primary transition-all relative flex cursor-pointer group  px-4 py-1 items-center justify-center gap-x-4">
                 <span>
                   <FaList />
                 </span>
@@ -188,11 +223,11 @@ const activeHandler=(value:string)=>{
                 <ul
                   className="top-8 rounded-2xl  right-0 *:text-nowrap transition-all invisible 
                 group-hover:visible  group-hover:translate-x-0 -translate-x-8          
-                   border-t-4 border-t-red-800   absolute space-y-6
+                   border-t-4 border-t-primary   absolute space-y-6
                     bg-zinc-800 backdrop-blur-[6px] 
-                text-right px-4 py-4 *:hover:text-red-800 *:transition-all *:text-[14px] font-Dana"
+                text-right px-4 py-4 *:hover:text-primary *:transition-all *:text-[14px] font-Dana"
                 >
-                  <li onClick={() => useAddMenu.onOpen()}>اضافه کردن محصول</li>
+                  <li onClick={() => activeHandler("/management")}> مدیریت</li>
                   <li onClick={() => signOut()}> خروج</li>
                 </ul>
               </div>

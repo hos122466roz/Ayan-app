@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
       "utfs.io",
     ],
   },
-  missingSuspenseWithCSRBailout: false,
 };
 
 export default nextConfig;

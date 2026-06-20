@@ -9,7 +9,7 @@ const Loading = () => {
           src="https://lottie.host/cdc3ddd7-030e-42e3-bedb-3691464f02ac/LotkW3F6R5.lottie"
           loop
           autoplay
-          className="zise-24  text-red-800"
+          className="zise-24  text-primary"
         />
       </div>
     </>

@@ -24,6 +24,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
     defaultValues: {
       email: "",
       password: "",
+      name: "",
     },
   });
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -36,8 +37,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
         setIsLoading(false);
       })
       .catch((error) => {
-        toast.error("Something went wrong");
-        console.log(error)
+        toast.error(error?.response?.data?.message || "خطایی رخ داده است");
       })
       .finally(() => {
         setIsLoading(false);
@@ -50,7 +50,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
       } rigster-form  h-[100%] w-full   top-0 `}
     >
       <h1 className="text-center text-2xl py-4 font-bold">ثبت نام</h1>
-      <form action="" className="py-5 px-8 space-y-6">
+      <form action="" className="md:py-5 py-2 px-3 md:px-8 space-y-6">
         <Input
           id="email"
           label="ایمیل"
@@ -91,10 +91,10 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
           disabled:cursor-not-allowed
           hover:bg-green-800"
         >
-          {isLoading ? "Loading...":"ثبت نام"  }
+          {isLoading ? "Loading..." : "ثبت نام"}
         </button>
       </form>
-      <div className="px-8 pb-5">
+      <div className=" px-3 md:px-8 pb-5">
         <button
           onClick={() => handleActive("login")}
           className=" 

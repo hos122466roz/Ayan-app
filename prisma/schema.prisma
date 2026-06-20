@@ -12,45 +12,49 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
-model User{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String?
-  email String? @unique
+
+model User {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String?  @unique
+  role           String   @default("user")
   hashedPassword String?
-  createdAat DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAat     DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   account Account[]
-  menu Menu[]
-  }
-  model Account{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  menu    Menu[]
+}
+
+model Account {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @db.ObjectId
-  type String
-  provider String
+  type   String
+  role   String @default("user")
+
+  provider        String
   providerAccount String
-  refresh_token String? @db.String
-  access_token String? @db.String
-  expires_at Int?
-  scope String?
-  id_token String @db.String
-  session_state String?  
-  
+  refresh_token   String? @db.String
+  access_token    String? @db.String
+  expires_at      Int?
+  scope           String?
+  id_token        String  @db.String
+  session_state   String?
 
-  user User @relation(fields: [userId],references: [id],onDelete:Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider,providerAccount])
-  }
+  @@unique([provider, providerAccount])
+}
 
-  model Menu{
-      id String @id @default(auto()) @map("_id") @db.ObjectId
-      title String
-      description String 
-      imageSrc String
-      createdAat DateTime @default(now())
-      price Int
-      Categorys String
-     userId String @db.ObjectId
-     
-     user User @relation(fields: [userId],references: [id],onDelete:Cascade)
-  }
+model Menu {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  imageSrc    String
+  createdAat  DateTime @default(now())
+  price       Int
+  Categorys   String
+  userId      String   @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
