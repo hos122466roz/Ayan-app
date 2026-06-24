@@ -4,10 +4,10 @@ import { FaBusinessTime } from "react-icons/fa";
 const ContactUsClient = () => {
   return (
     <section className="container my-24  ">
-      <div className="text-center">
-        <h2 className="text-4xl text-white font-DanaDemiBold">تماس با ما</h2>
-        <p className="font-Dana text-gray-300 mt-4"> آدرس و اطلاعات تماس ما</p>
-      </div>
+      <div className="text-center mb-8">
+        <h2 className="text-5xl text-primary font-DanaDemiBold"> تماس با ما</h2>
+        <p className="font-Dana text-white mt-4"> آدرس و اطلاعات تماس ما</p>
+      </div>{" "}
       <div className=" my-12 flex md:flex-row flex-col-reverse ">
         <div className="md:w-1/2 ">
           <iframe
@@ -27,7 +27,7 @@ const ContactUsClient = () => {
               <IoCallOutline size={50} className="text-primary  " />
               <div className="mr-6 [&_p]:pt-2 [&_p]:text-zinc-100">
                 <h2 className="text-white">شماره های تماس</h2>
-                <p className="*:inline-block">
+                <p className="*:inline-block flex">
                   <a href="tel: 03132620291"> تلفن 1 : 03132620291</a>
                   <a href="tel:03132620292" className="md:pr-8">
                     {" "}

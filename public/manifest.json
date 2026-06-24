@@ -1,0 +1,22 @@
+{
+  "name": "Ayan",
+  "short_name": "Ayan",
+  "description": "Ayan App",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#171819",
+  "theme_color": "#171819",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/image/logo/IMG_20250224_014354_555-removebg-preview.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "//image/logo/IMG_20250224_014354_555-removebg-preview.ico",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -17,7 +17,7 @@ const AccountModal = () => {
                ${loginModal.isOpen ? "flex" : "hidden"}        
               items-center justify-center h-[100vh] w-full fixed top-0 z-50 right-0 bg-black/70 `}
     >
-      <div className=" content  bg-white relative mx-4 md:mx-0 z-30 p-8 w-full max-w-[510px] transition ">
+      <div className=" content  bg-bg-menu relative mx-4 md:mx-0 z-30 p-8 w-full max-w-[510px] transition ">
         {/*  Button close Modal  */}
         <div
           onClick={() => loginModal.onClose()}
@@ -25,9 +25,9 @@ const AccountModal = () => {
            top-4 right-4 border-2  hover:text-white hover:bg-zinc-400 
           absolute rounded-full "
         >
-          <IoCloseOutline className="" size={20} />
+          <IoCloseOutline className=" text-bg-menu  " size={20} />
         </div>
-        <div className=" border  relative h-[100%] overflow-hidden ">
+        <div className=" border border-white/50  relative h-[100%] overflow-hidden ">
           {/* login */}
           <LoginModal active={active} handleActive={handleActive} />
           {/* register */}

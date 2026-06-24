@@ -49,7 +49,9 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
         active === "rigster" ? "translate-x-0" : "translate-x-[100%]"
       } rigster-form  h-[100%] w-full   top-0 `}
     >
-      <h1 className="text-center text-2xl py-4 font-bold">ثبت نام</h1>
+      <h1 className="text-center text-white text-2xl py-4 font-bold">
+        ثبت نام
+      </h1>
       <form action="" className="md:py-5 py-2 px-3 md:px-8 space-y-6">
         <Input
           id="email"
@@ -82,14 +84,16 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
           w-full
           p-4
           font-bold
-          bg-zinc-800
+          bg-green-800
           text-white
           border-2
+          border-bg-menu/50
+          rounded-xl
           outline-none
           transition
           disabled:opacity-70
           disabled:cursor-not-allowed
-          hover:bg-green-800"
+          hover:bg-green-600"
         >
           {isLoading ? "Loading..." : "ثبت نام"}
         </button>
@@ -105,11 +109,15 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
           bg-zinc-400
           text-white
           border-2
+          border-bg-menu/50
+          rounded-xl
+          font-Dana
           outline-none
           transition
+          bg-green-800
           disabled:opacity-70
           disabled:cursor-not-allowed
-          hover:bg-green-800"
+          hover:bg-green-600"
         >
           ایا حساب کاربری دارید؟
         </button>

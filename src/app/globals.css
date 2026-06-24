@@ -117,3 +117,8 @@ body {
 button{
   cursor:pointer;
 }
+@media screen and (max-width:460px) {
+  .hero {
+  background-position: top 20% right 73%;
+}
+}

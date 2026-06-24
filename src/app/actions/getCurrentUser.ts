@@ -1,39 +1,36 @@
-import { getServerSession } from "next-auth/next";
-
-import { authOptions } from "../../pages/api/auth/[...nextauth]";
-
+// src/app/actions/getCurrentUser.ts
 import prisma from "@/app/libs/prismadb";
+import { cookies } from "next/headers";
 
-export async function getSession() {
-  
-
-  return await getServerSession(authOptions);
-}
 
 export default async function getCurrentUser() {
-  try {
-    const session = await getSession();
+    const cookieStore = await cookies();
 
-    if (!session?.user?.email) {
+  const userCookie = cookieStore.get("user");
+  const user = userCookie ? JSON.parse(userCookie.value) : null;
+
+  try {
+    if (!user?.email) {
       return null;
     }
 
     const currentUser = await prisma.user.findUnique({
       where: {
-        email: session.user.email as string,
+        email: user.email,
       },
     });
-
     if (!currentUser) {
       return null;
     }
 
+    // تبدیل تاریخ‌ها به string برای ارسال به کلاینت
     return {
       ...currentUser,
-      createdAt: currentUser.createdAat.toISOString(),
-      updatedAt: currentUser.updatedAt.toISOString(),
+
+      updatedAt:
+        currentUser.updatedAt?.toISOString() || new Date().toISOString(),
     };
-  } catch (error: any) {
-    throw new Error(error);
+  } catch (error) {
+    return null;
   }
 }

@@ -31,13 +31,15 @@ const Input: React.FC<InputProps> = ({
         className={`
           font-Dana
            peer
+           text-white
            rounded-2xl
           w-full
           p-4
           pt-6
           font-light 
-          bg-white 
+          bg-zinc-700 
           border-2
+          border-zinc-700 
           outline-none
           transition placeholder:font-Dana
           disabled:opacity-70
