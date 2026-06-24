@@ -1,10 +1,11 @@
-import NextAuth, { AuthOptions } from "next-auth";
+// src/lib/auth.ts
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/app/libs/prismadb";
 import bcrypt from "bcrypt";
 
-export const authOptions: AuthOptions = {
+export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
@@ -14,13 +15,19 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+        // نکته: credentials را به نوع مناسب cast کنید
+        const { email, password } = credentials as {
+          email: string;
+          password: string;
+        };
+
+        if (!email || !password) {
           return null;
         }
 
         const user = await prisma.user.findUnique({
           where: {
-            email: credentials.email,
+            email: email,
           },
         });
 
@@ -28,10 +35,7 @@ export const authOptions: AuthOptions = {
           return null;
         }
 
-        const isValid = await bcrypt.compare(
-          credentials.password,
-          user.hashedPassword,
-        );
+        const isValid = await bcrypt.compare(password, user.hashedPassword);
 
         if (!isValid) {
           return null;
@@ -52,7 +56,4 @@ export const authOptions: AuthOptions = {
     signIn: "/auth/signin",
   },
   secret: process.env.NEXTAUTH_SECRET,
-};
-
-export default NextAuth(authOptions);
-
+});
