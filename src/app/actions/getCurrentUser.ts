@@ -19,7 +19,6 @@ export default async function getCurrentUser() {
         email: user.email,
       },
     });
-
     if (!currentUser) {
       return null;
     }

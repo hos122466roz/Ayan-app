@@ -22,6 +22,8 @@ import DeleteMenuModal from "./components/modals/DeleteMenuModal";
 
 export const metadata: Metadata = {
   title: "Ayan  ",
+  manifest: "/manifest.json",
+
   description: "کباب و جوجه زغالی اعیان در اصفهان",
   icons: {
     icon: "./image/logo/IMG_20250224_014354_555-removebg-preview.ico", // /public path

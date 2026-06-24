@@ -32,7 +32,7 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-white">لینک های مهم</h2>
+          <h2 className="text-white !text-md md:!text-xl">لینک های مهم</h2>
           <ul className="space-y-4 *:text-white *:hover:text-black">
             <li>
               <a href="">منو</a>
@@ -79,9 +79,10 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className=" w-full text-center mt-12 text-white ">
-        <h1 className=" flex items-center justify-center">
-          کلیه حقوق این سایت محفوظ است - ساخته شده توسط
+      <div className=" w-full text-center mt-12  flex flex-col gap-2 text-white ">
+        <p className="!text-[12px]"> کلیه حقوق این سایت محفوظ است</p>
+        <h1 className=" flex items-center  !text-[12px]  justify-center">
+          ساخته شده توسط
           <span className="black mx-3 text-red-600 animate-ping">
             <FaHeart />
           </span>
