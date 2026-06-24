@@ -6,11 +6,16 @@ const AbouteClient = () => {
   return (
     <section className="py-40 flex flex-col-reverse md:flex-row container ">
       <div className=" mt-8 md:mt-0 ">
-        <Image src={img} className=" w-full  rounded-[10px]" alt="about" height={600} />
+        <Image
+          src={img}
+          className=" w-full  rounded-[10px]"
+          alt="about"
+          height={600}
+        />
       </div>
-      <div className="font-Dana max-w-2/3  text-white">
+      <div className="font-Dana mad:max-w-2/3  text-white">
         <div className="">
-          <h1 className="text-4xl  font-DanaDemiBold mb-8 border-b-3 border-b-primary inline-block pb-4 ">
+          <h1 className="text-xl md:text-4xl  font-DanaDemiBold mb-8 border-b-3 border-b-primary inline-block pb-4 ">
             مدیریت مجموعه اعیان
           </h1>
           <p
@@ -34,37 +39,37 @@ const AbouteClient = () => {
             نام اعیان ارائه کنیم.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 grid-cols-1 mt-8 *:*:flex *:*:items-center *:*:gap-x-5 *:*:text-xl space-y-8 [&_p]:mt-3 [&_p]:text-[14px] [&_p]:text-white">
-          <div className="">
-            <div>
-              <FaRegSquareCheck className="text-primary" />
+        <div className="grid md:grid-cols-2 grid-cols-1 mt-8 *:*:flex *:*:items-center *:*:gap-x-5 *:*:text-xl space-y-8 [&_p]:mt-3 [&_p]:text-[14px] [&_p]:text-white/90">
+          <div className="flex items-start gap-2">
+            <FaRegSquareCheck className="text-primary" />
+            <div className="flex flex-col gap-1 justify-start !items-start">
               <span>مشتری مداری</span>
+              <p>داشتن اخلاق کار حرفه ای برای نهایت احترام به مشتری</p>
             </div>
-            <p>داشتن اخلاق کار حرفه ای برای نهایت احترام به مشتری</p>
           </div>
-          <div>
-            <div>
-              <FaRegSquareCheck className="text-primary" />
+          <div className="flex items-start gap-2">
+            <FaRegSquareCheck className="text-primary" />
+            <div className="flex flex-col gap-1 justify-start !items-start">
               <span> متریال تازه و اورجینال</span>
+              <p> تهیه بهترین متریال برای تهیه غذا و دسر بدون انبار کردن</p>
             </div>
-            <p> تهیه بهترین متریال برای تهیه غذا و دسر بدون انبار کردن</p>
           </div>
-          <div>
-            <div>
-              <FaRegSquareCheck className="text-primary" />
+          <div className="flex items-start gap-2">
+            <FaRegSquareCheck className="text-primary" />
+            <div className="flex flex-col gap-1 justify-start !items-start">
               <span> کاملا بهداشتی</span>
+              <p> توجه به دستور های بهداشتی و رعایت آن حین آماده سازی</p>
             </div>
-            <p> توجه به دستور های بهداشتی و رعایت آن حین آماده سازی</p>
           </div>
-          <div>
-            <div>
+          <div className="flex items-start gap-2">
               <FaRegSquareCheck className="text-primary" />
+            <div className="flex flex-col gap-1 justify-start !items-start">
               <span> آشپزخانه قابل رویت</span>
-            </div>
             <p>
               {" "}
               تمام مراحل تهیه مواد اولیه و پخت غذا کاملا قابل مشاهده میباشد
             </p>
+            </div>
           </div>
         </div>
       </div>

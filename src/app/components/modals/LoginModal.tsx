@@ -52,7 +52,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ active, handleActive }) => {
           active === "login" ? "translate-x-0" : "-translate-x-[100%]"
         } login-form absolute  h-[100%] w-full  top-0   `}
       >
-        <h1 className="text-center text-2xl py-4 font-bold">ورود</h1>
+        <h1 className="text-center text-white text-2xl py-4 font-bold">ورود</h1>
         <form action="" className="md:py-5 py-2 px-3 md:px-8 space-y-6">
           <Input
             id="email"
@@ -74,7 +74,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ active, handleActive }) => {
 
           <a
             href=""
-            className="text-gray-600  inline-block  hover:text-gray-900"
+            className="text-gray-100  inline-block  hover:text-gray-900"
           >
             رمز عبور خود را فراموش کردم؟
           </a>
@@ -85,15 +85,16 @@ const LoginModal: React.FC<LoginModalProps> = ({ active, handleActive }) => {
           w-full
           p-4
           font-bold
-          bg-zinc-800
+          bg-green-800
           text-white
           border-2
-     
+          border-bg-menu/50
+          rounded-xl
           outline-none
           transition
           disabled:opacity-70
           disabled:cursor-not-allowed
-          hover:bg-green-800"
+          hover:bg-green-600"
           >
             {isLoading ? "Loading..." : "ورود"}
           </button>
@@ -101,7 +102,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ active, handleActive }) => {
         <div className=" px-3 md:px-8 pb-5">
           <button
             onClick={() => handleActive("rigster")}
-            className=" peer
+            className=" 
               
           w-full
           p-4
@@ -109,12 +110,15 @@ const LoginModal: React.FC<LoginModalProps> = ({ active, handleActive }) => {
           bg-zinc-400
           text-white
           border-2
-      
+          border-bg-menu/50
+          rounded-xl
+          font-Dana
           outline-none
           transition
+          bg-green-800
           disabled:opacity-70
           disabled:cursor-not-allowed
-          hover:bg-green-800"
+          hover:bg-green-600"
           >
             ثبت نام
           </button>

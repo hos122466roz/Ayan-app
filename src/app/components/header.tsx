@@ -228,6 +228,8 @@ z-50
                 text-right px-4 py-4 *:hover:text-primary *:transition-all *:text-[14px] font-Dana"
                 >
                   <li onClick={() => activeHandler("/management")}> مدیریت</li>
+                  <li onClick={exportMenu}> دانلود منو</li>
+
                   <li onClick={() => signOut()}> خروج</li>
                 </ul>
               </div>
