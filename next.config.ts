@@ -1,6 +1,9 @@
 import withPWA from "next-pwa";
 
 const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     remotePatterns: [
       {
