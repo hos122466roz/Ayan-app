@@ -9,6 +9,7 @@ import getCurrentUser from "./actions/getCurrentUser";
 import AddMenuModal from "./components/modals/AddMenuModal";
 import EditMenuModal from "./components/modals/EditMenuModal";
 import DeleteMenuModal from "./components/modals/DeleteMenuModal";
+
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
 //   subsets: ["latin"],

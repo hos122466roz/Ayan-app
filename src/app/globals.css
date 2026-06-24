@@ -119,7 +119,6 @@ button{
 }
 @media screen and (min-width:400px) {
   .hero {
-
-  background-position: top 20% right 70%;
+  background-position: top 20% right 40%;
 }
 }

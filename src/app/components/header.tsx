@@ -14,10 +14,10 @@ import useLoginModal from "../hooks/useLoginModal";
 import { SafeUser } from "../types";
 import { FaList } from "react-icons/fa6";
 import { IoMdAdd } from "react-icons/io";
-import { signOut } from "next-auth/react";
 import useAddMenuMenu from "../hooks/useAddMenuModal";
 import Li from "./Li/Li";
 import { exportMenu } from "../utils/exportMenu";
+import Cookies from "js-cookie";
 
 interface HeaderProps {
   currentUser: SafeUser | null;
@@ -120,7 +120,7 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
               >
                 <li onClick={() => router.push("/management")}> مدیریت</li>
                 <li onClick={exportMenu}> دانلود منو</li>
-                <li onClick={() => signOut()}> خروج</li>
+                <li onClick={() =>   Cookies.remove("user")}> خروج</li>
               </ul>
             </div>
           ) : (
@@ -215,24 +215,13 @@ z-50
               </li>
             ) : null}
             {currentUser ? (
-              <div className="hover:border-hidden hover:[&_span]:text-primary transition-all relative flex cursor-pointer group  px-4 py-1 items-center justify-center gap-x-4">
-                <span>
-                  <FaList />
-                </span>
-                <span> پروفایل</span>
-                <ul
-                  className="top-8 rounded-2xl  right-0 *:text-nowrap transition-all invisible 
-                group-hover:visible  group-hover:translate-x-0 -translate-x-8          
-                   border-t-4 border-t-primary   absolute space-y-6
-                    bg-zinc-800 backdrop-blur-[6px] 
-                text-right px-4 py-4 *:hover:text-primary *:transition-all *:text-[14px] font-Dana"
-                >
-                  <li onClick={() => activeHandler("/management")}> مدیریت</li>
-                  <li onClick={exportMenu}> دانلود منو</li>
+              <>
+                <li onClick={() => activeHandler("/management")}> مدیریت</li>
+                <li onClick={exportMenu}> دانلود منو</li>
 
-                  <li onClick={() => signOut()}> خروج</li>
-                </ul>
-              </div>
+                <li onClick={() =>   Cookies.remove("user")}> خروج</li>
+                
+              </>
             ) : (
               <button
                 onClick={() => loginModal.onOpen()}
