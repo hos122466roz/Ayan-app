@@ -1,5 +1,5 @@
 import Image from "next/image";
-import img from "../../../public/image/about/Picsart_25-04-22_14-10-28-137.png";
+import img from "../../../public/image/about/ChatGPT Image ۳ ۱۴۰۵، ۲۱_۵۴_۱۹.png";
 import { FaRegSquareCheck } from "react-icons/fa6";
 
 const AbouteClient = () => {
@@ -9,7 +9,7 @@ const AbouteClient = () => {
         <h2 className="text-5xl text-primary font-DanaDemiBold">درباره  ما</h2>
         <p className="font-Dana text-white mt-4"> معرفی مجموعه ، خدمات ما</p>
       </div>{" "}
-      <div className="flex flex-col-reverse md:flex-row">
+      <div className="flex flex-col-reverse gap-x-10 md:flex-row">
         <div className=" mt-8 md:mt-0 ">
           <Image
             src={img}
@@ -24,7 +24,7 @@ const AbouteClient = () => {
               مدیریت مجموعه اعیان
             </h1>
             <p
-              className=" text-justify  tracking-[5px] text-base/6
+              className=" text-justify  text-base/6
 
 
 "
